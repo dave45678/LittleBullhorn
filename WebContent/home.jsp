@@ -9,6 +9,7 @@
 </head>
 <body>
 <jsp:include page="navbar.jsp"></jsp:include>
+
 <h1>This is the home page</h1>
 <form role="form" action="PostServ" method="post" onsubmit="return validate(this);">
                 <div class="form-group">  

@@ -44,7 +44,7 @@ public class PostServ extends HttpServlet {
 		//get user information from session so we can connect to the db
 		Bhuser user = (Bhuser)session.getAttribute("user");
 		
-		
+/*****************************************
 		//get  a populated bhuser object since we'll add that to the post
 		EntityManager em = DbUtil.getEmFactory().createEntityManager();
 		String query = "select u from Bhuser u where u.useremail=:email";
@@ -71,7 +71,7 @@ public class PostServ extends HttpServlet {
 		bhPost.setPosttext(posttext);
 		
 		DbBullhorn.insert(bhPost);
-		
+**********************************************/		
 		//go to the newsfeed or error
 		getServletContext().getRequestDispatcher(nextURL).forward(request, response);
 		
