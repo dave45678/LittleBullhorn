@@ -11,7 +11,7 @@ import model.Bhpost;
 public class BhPostsTests {
 
 	@Test
-	public void test() {
+	public void getPostTest() {
 		try {
 			ArrayList<Bhpost> posts = (ArrayList<Bhpost>) DbBullhorn.AllPosts();
 			//System.out.println(posts.get(0).getPosttext());
@@ -23,6 +23,22 @@ public class BhPostsTests {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@Test
+	public void addPostTest(){
+		java.util.Date d = new java.util.Date();
+		java.sql.Date postdate = new java.sql.Date(d.getTime());
+		String posttext = "This is a test2";
+		int userid = 5;
+		
+		System.out.println(DbBullhorn.insert(postdate, posttext, userid));
+		assertEquals(DbBullhorn.insert(postdate, posttext, userid),1);
+	}
+	
+	@Test
+	public void addPostManually(){
+		//String sql = "insert insert into bhpost (postdate,posttext,bhuserid)"
 	}
 
 }

@@ -11,11 +11,39 @@ import model.Bhpost;
 
 public class DbBullhorn {
 
-	public static void insert(Bhpost bhPost) {
-		
+	public static int insert(java.util.Date postdate,String posttext,int userid) {
+		String sql = "insert into bhpost (postdate,posttext,bhuserid) " + 
+				"values(?,?,?)";
+		int recordsAffected = 0;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try{
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:ora1/ora1@localhost:1521:orcl");
+			pstmt = con.prepareStatement(sql);
+			pstmt.setDate(1,new java.sql.Date(postdate.getTime()));
+			pstmt.setString(2, posttext);
+			pstmt.setInt(3, userid);
+			recordsAffected = pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				pstmt.close();
+				con.close();
+			}catch(SQLException e){
+				e.printStackTrace();
+			}
+		}
+
+		return recordsAffected;
+
 	}
 
-	public static void update(Bhpost bhPost) {
+	public static void update() {
 		
 	}
 
@@ -33,13 +61,13 @@ public class DbBullhorn {
 		// Fetch each row from the result set
 		while (rs.next()) {
 		  long postid = rs.getInt("postid");
-		  String postdate = rs.getString("postdate");
+		  java.util.Date postdate = rs.getDate("postdate");
 		  String posttext = rs.getString("posttext");
 		  long userid = rs.getLong("bhuserid");
 
 		  Bhpost p = new Bhpost();
 		  p.setPostid(postid);
-		  //p.setPostdate(new java.util.Date(postdate));
+		  p.setPostdate(convertJavaDateToSqlDate(postdate));
 		  p.setPosttext(posttext);
 		  p.setBhuserid(userid);
 		  //add the post to the arraylist
@@ -69,6 +97,10 @@ public class DbBullhorn {
 				+ "where b.posttext like :search";
 		
 	    return searchposts;
+	}
+	
+	public static java.sql.Date convertJavaDateToSqlDate(java.util.Date date) {
+	    return new java.sql.Date(date.getTime());
 	}
 	
 }
