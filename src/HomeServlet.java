@@ -14,11 +14,11 @@ import model.Bhpost;
 import customTools.DbBullhorn;
 
 
-@WebServlet("/PostServ")
-public class PostServ extends HttpServlet {
+@WebServlet("/HomeServlet")
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public PostServ() {
+    public HomeServlet() {
         super();
     }
 

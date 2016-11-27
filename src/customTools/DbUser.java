@@ -120,8 +120,7 @@ public class DbUser {
 	 * it won't tell you. Sounds like something needs to be added in the future. Hmmm.
 	 * @param bhUser
 	 */
-	public static int update(int bhuserid,String username,String userpassword,
-		String useremail,String motto,java.util.Date joindate) {
+	public static int update(Bhuser bhuser) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -129,22 +128,20 @@ public class DbUser {
 		int nmbrUpdated = 0;
 		
 		String sql = "update bhuser set username=?, userpassword=?," + 
-				"useremail=?,motto=?,joindate=? where bhuserid=?";
+				"useremail=?,motto=? where bhuserid=?";
 
 		try{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:ora1/ora1@localhost:1521:orcl");
-			//stmt = con.createStatement();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setLong(1, bhuserid);
-			pstmt.setString(2,username);
-			pstmt.setString(3, userpassword);
-			pstmt.setString(4, useremail);
-			pstmt.setString(5, motto);
-			java.sql.Date datejoined = new java.sql.Date(joindate.getTime());
-			pstmt.setDate(6, datejoined);
-
-			nmbrUpdated = pstmt.executeUpdate(sql);
+			pstmt.setString(1, bhuser.getUsername());
+			pstmt.setString(2, bhuser.getUserpassword());
+			pstmt.setString(3, bhuser.getUseremail());
+			pstmt.setString(4, bhuser.getMotto());
+			//java.sql.Date datejoined = new java.sql.Date(bhuser.getJoindate().getTime());
+			//pstmt.setString(5, datejoined.toString());
+			pstmt.setLong(5, bhuser.getBhuserid());
+			nmbrUpdated = pstmt.executeUpdate();
 
 
 		}catch (SQLException e) {
