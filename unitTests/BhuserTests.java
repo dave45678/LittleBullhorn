@@ -39,5 +39,17 @@ public class BhuserTests {
 		int nmbrUpdated = DbUser.update(u);
 		assertTrue(nmbrUpdated==1);
 	}
+	@Test
+	public void getUserByIdTest(){
+		model.Bhuser u = DbUser.getUser(6);
+		//System.out.println(u.getUseremail());
+		assertTrue(u.getBhuserid()==6);
+	}
+	@Test
+	public void getJoinDateTest(){
+		model.Bhuser u = DbUser.getUser(6);
+		System.out.println(u.getJoindate());
+		assertTrue(1==1);
+	}
 
 }

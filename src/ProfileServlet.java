@@ -54,6 +54,7 @@ public class ProfileServlet extends HttpServlet {
 		userid = Long.parseLong(request.getParameter("userid"));
 		action = request.getParameter("action");
 		
+
 		
 		//update profile for user in request variable if action = updateprofile
 		if (request.getParameter("action").equals("updateprofile")){

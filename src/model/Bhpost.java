@@ -11,6 +11,7 @@ public class Bhpost implements Serializable {
 	private Date postdate;
 	private String posttext;
 	private long bhuserid;
+	private Bhuser bhuser;
 
 	public long getPostid() {
 		return this.postid;
@@ -42,6 +43,9 @@ public class Bhpost implements Serializable {
 
 	public void setBhuserid(long bhuserid) {
 		this.bhuserid = bhuserid;
+	}
+	public Bhuser getBhuser(){
+		return customTools.DbUser.getUser(this.bhuserid);	
 	}
 
 }

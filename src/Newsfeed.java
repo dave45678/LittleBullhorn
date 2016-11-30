@@ -23,6 +23,13 @@ public class Newsfeed extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//doGet will run if we come to this servlet by clicking on a url or by using the 
+		//getRequestDispatcher method of the servlet. This is how we come to most servlets in this application
+		//so doGet just calls doPost which contains the code.
+		//Alternatively, we could move all the code from doPost to doGet and remove doPost but we do use that sometimes
+		//when submitting forms.
+		
+		
 		//since some of the parameters come in the url, pass get to post where all code is handled
 		doPost(request,response);
 	}

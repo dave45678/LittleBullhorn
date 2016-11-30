@@ -24,6 +24,14 @@ public class BhPostsTests {
 		}
 		
 	}
+	@Test 
+	public void searchPostsTest(){
+			ArrayList<Bhpost> posts = (ArrayList<Bhpost>) DbBullhorn.searchPosts("This is a test");
+			//System.out.print("Search Results: ");
+			//System.out.println(posts.get(0).getPosttext());
+			assertTrue(posts.get(0).getPosttext().equals("This is a test"));
+
+	}
 	
 
 	@Test

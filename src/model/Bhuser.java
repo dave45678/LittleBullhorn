@@ -68,25 +68,15 @@ public class Bhuser implements Serializable {
 	}
 
 	public List<Bhpost> getBhposts() {
-		return this.bhposts;
+		return customTools.DbBullhorn.postsofUser(this.bhuserid);
 	}
 
-	public void setBhposts(List<Bhpost> bhposts) {
-		this.bhposts = bhposts;
+
+	public void addBhpost(Bhpost bhpost) {
+		customTools.DbBullhorn.insert(
+				bhpost.getPostdate(), bhpost.getPosttext(),bhpost.getBhuserid());
 	}
 
-//	public Bhpost addBhpost(Bhpost bhpost) {
-//		getBhposts().add(bhpost);
-//		bhpost.setBhuser(this);
-//
-//		return bhpost;
-//	}
-//
-//	public Bhpost removeBhpost(Bhpost bhpost) {
-//		getBhposts().remove(bhpost);
-//		bhpost.setBhuser(null);
-//
-//		return bhpost;
-//	}
+
 
 }
