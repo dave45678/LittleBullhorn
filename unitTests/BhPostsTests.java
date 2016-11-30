@@ -11,11 +11,11 @@ import model.Bhpost;
 public class BhPostsTests {
 
 	@Test
-	public void getPostTest() {
+	public void getAllPostsTest() {
 		try {
 			ArrayList<Bhpost> posts = (ArrayList<Bhpost>) DbBullhorn.AllPosts();
 			//System.out.println(posts.get(0).getPosttext());
-			assertTrue(posts.get(0).getPosttext().equals("ddd"));
+			assertTrue(posts.get(0).getPosttext().equals("This is a test"));
 			
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -25,6 +25,7 @@ public class BhPostsTests {
 		
 	}
 	
+
 	@Test
 	public void addPostTest(){
 		java.util.Date d = new java.util.Date();
@@ -36,9 +37,4 @@ public class BhPostsTests {
 		assertEquals(DbBullhorn.insert(postdate, posttext, userid),1);
 	}
 	
-	@Test
-	public void addPostManually(){
-		//String sql = "insert insert into bhpost (postdate,posttext,bhuserid)"
-	}
-
 }
